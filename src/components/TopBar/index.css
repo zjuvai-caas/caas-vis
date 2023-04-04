@@ -1,0 +1,83 @@
+.top-nav {
+    display: flex;
+    width: 1920px;
+    height: 100px;
+    background-color: #000;
+}
+
+.nav-item-logo {
+    width: 340px;
+    height: 100px;
+    padding-left: 60px;
+    background: url("../../../assets/images/logo.png") no-repeat;
+    background-position: 24px 40px;
+    background-size: 34.5px 23px;
+    background-color: #000;
+    color: #fff;
+    font-size: 28px;
+    text-decoration: none;
+    line-height: 100px;
+    cursor: pointer;
+}
+
+.nav-item {
+    width: 250px;
+    height: 100px;
+    /* padding: 33px 60px; */
+    background-color: #000;
+    color: #fff;
+    font-size: 28px;
+    text-decoration: none;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+}
+
+.active-nav-item {
+    height: 95px;
+    line-height: 90px;
+    background-color: #fff;
+    color: #00A3FF;
+    border-top: 5px solid #00A3FF;
+}
+
+.user {
+    display: flex;
+    width: 300px;
+    height: 100px;
+    margin-left: 220px;
+    background-color: pink;
+    background: url('../../../assets/images/user-icon.png') no-repeat;
+    background-size: 62px 62px;
+    background-position: 0 19px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 80px;
+    margin-top: 24px;
+}
+
+.user-name {
+    font-size: 18px;
+    color: #fff;
+}
+
+.user-status {
+    font-size: 18px;
+    color: #00FF47;
+}
+
+.user-manager {
+    /* position: relative; */
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-left: 70px;
+    margin-top: 30px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAcCAYAAAAeC42RAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAEBSURBVFhH1djZEYIwFEZhSrAES7ID6cSSeGRpwhIoRf4oZ3RYZEtyw5m547Ak+YZHs2FlWV6rqrr1l+bVdZ0XRXHpL6dz6KZpWs1LC+79bbPkeDiL5jmL/0UzlnidD5oZ46fQjAVe5w7RzBf/D83ExOu8OTTzwQueTzwcTQy8zllCO0frPvZ7QQp47b8NTZZ47bsPTRZ47XcMTTHx2scPmmLgtd4vmkLitS4MmkLg9X5YNPnE6704aPKB1/O4aDqC130bNO3B69oWTVvw+k0DTWvxSxMVTUfxJmjaizdF01Z8Emhai08KTUv4JNE0h08aTUP8KdAE/lRocn/jhUNnWQeZ1mGzHRKeEwAAAABJRU5ErkJggg==) no-repeat;
+    background-size: 23px 14px;
+    background-position: center center;
+    cursor: pointer;
+}

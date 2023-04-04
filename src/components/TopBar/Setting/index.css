@@ -1,0 +1,36 @@
+.setting {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 85px;
+    right: 20px;
+    width: 250px;
+    height: 300px;
+    background-color: #000;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.setting-item {
+    height: 73px;
+    padding-left: 50px;
+    font-size: 18px;
+    line-height: 73px;
+    color: #fff;
+    cursor: pointer;
+    border: #000 solid 1px;
+}
+
+.setting-item-top {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.setting-item-bottom {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.active-setting-item {
+    border: #642EFF solid 1px;
+}

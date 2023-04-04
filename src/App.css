@@ -32,7 +32,17 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+/* main  */
+.Webpage {
+  position: relative;
+  display: block;
+  width: 1920px;
+  height: 1080px;
+  background-color: #F1F1F1;
 }

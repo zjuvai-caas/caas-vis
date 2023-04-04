@@ -1,0 +1,123 @@
+.body {
+    display: flex;
+    width: 1920px;
+    height: 980px;
+}
+
+.page-body {
+    width: 1620px;
+    height: 980px;
+}
+
+.data-page {
+    position: relative;
+    width: 1580px;
+    height: 935px;
+    padding-top: 5px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.table-bar {
+    height: 80px;
+}
+
+.table-head {
+    margin-left: 20px;
+    padding: 28px 20px 28px 56px;
+    font-size: 20px;
+    background: url("../../../assets/images/prod-detail.png") no-repeat;
+    background-size: 26px 26px;
+    background-position: 20px 30px;
+}
+
+.table-main {
+    display: flex;
+    flex-direction: row;
+    height: 730px;
+    padding: 10px 0 10px 10px;
+}
+
+.prod-attribute {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 730px;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.attribute-item {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    height: 100px;
+    margin-bottom: -25px;
+    padding-left: 24px;
+    line-height: 100px;
+}
+
+.query-show {
+    height: 100px;
+    margin: 0;
+    line-height: 100px;
+    font-size: 16px;
+    color: #949494;
+}
+
+.text-prod-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.select-name {
+    width: 200px;
+    height: 32px;
+}
+
+.relation {
+    display: flex;
+    flex-direction: column;
+    width: 1110px;
+    height: 730px;
+}
+
+.selection-head {
+    display: flex;
+    flex-direction: row;
+    width: 1060px;
+    height: 80px;
+    margin-top: 5px;
+}
+
+.selection-item {
+    width: 250px;
+    height: 80px;
+    line-height: 80px;
+    margin-right: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    background-color: #D9D9D9;
+    color: #000;
+    border-radius: 15px 15px 0 0;
+    border: #000 solid 1px;
+    border-bottom: #000 solid 0;
+}
+
+.active-selection-item {
+    height: 79px;
+    margin-bottom: 1px;
+    color: #00A3FF;
+    background-color: #fff;
+    border-bottom: #fff solid 2px;
+    z-index: 1;
+}
+
+
+.echart-sank {
+    width: 1058px;
+    height: 643px;
+    border: #000 solid 1px;
+}
