@@ -1,0 +1,91 @@
+.page-body-add {
+    width: 1620px;
+    height: 980px;
+}
+
+.data-page-add {
+    position: relative;
+    width: 1580px;
+    height: 935px;
+    padding-top: 5px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+.table-bar-add {
+    height: 80px;
+}
+
+.table-head-add {
+    margin-left: 20px;
+    padding: 28px 20px 28px 56px;
+    font-size: 20px;
+    background: url("../../../../assets/images/prod-detail.png") no-repeat;
+    background-size: 26px 26px;
+    background-position: 20px 30px;
+}
+
+.table-main-add {
+    display: flex;
+    flex-direction: row;
+    height: 730px;
+    padding: 10px 0 10px 10px;
+}
+
+.table-footer-add {
+    width: 1580px;
+    height: 80px;
+}
+
+.prod-attribute-add {
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    height: 730px;
+    margin-right: 10px;
+    padding: 5px;
+}
+
+.input-data-add {
+    display: flex;
+    flex-direction: column;
+    width: 1060px;
+    height: 730px;
+}
+
+.attribute-item-add {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+    margin-bottom: -25px;
+    padding-left: 24px;
+}
+
+.text-prod-name-add {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.select-name-add {
+    display: flex;
+    width: 195px;
+    height: 32px;
+    padding-left: 5px;
+    font-size: 16px;
+}
+.attach-info {
+    width: 300px;
+    height: 240px;
+    margin-left: 24px;
+}
+
+.input-highlight {
+    width: 32px;
+    height: 32px;
+    margin-left: 10px;
+    background: url("../../../../assets/images/input-highlight.png") no-repeat;
+    background-size: 32px 32px;
+}

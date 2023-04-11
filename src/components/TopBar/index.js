@@ -10,7 +10,7 @@ export default function TopBar() {
     return (
         <div>
             <div className="top-nav">
-                <a className="nav-item-logo">印染数据可视分析系统</a>
+                <a className="nav-item-logo">成本定价分析系统</a>
                 <a
                     className={`nav-item ${selectedItem === 0 ? "active-nav-item" : ""}`}
                     onClick={() => setSelectedItem(0)}

@@ -39,6 +39,12 @@
 }
 
 /* main  */
+.body {
+  display: flex;
+  width: 1920px;
+  height: 980px;
+}
+
 .Webpage {
   position: relative;
   display: block;
