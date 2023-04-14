@@ -1,0 +1,14 @@
+.ordinary-table thead {
+    background-color: #E0E0E0;
+}
+
+.ordinary-table {
+    max-height: 645px;
+    width: 1060px;
+    font-size: 18px;
+    overflow: auto;
+}
+
+.ordinary-table tr {
+    height: 60px;
+}

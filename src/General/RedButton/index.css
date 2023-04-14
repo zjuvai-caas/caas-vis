@@ -1,0 +1,22 @@
+.red-button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 79.5px;
+    height: 33px;
+    border-radius: 16.5px;
+    background-color: #FF2E00;
+    cursor: pointer;
+}
+
+.red-button-icon {
+    margin-left: 7px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.red-button-text {
+    margin-left: 7px;
+    font-size: 14px;
+    color: #fff;
+}

@@ -14,6 +14,9 @@
 }
 
 .table-bar-add {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     height: 80px;
 }
 
@@ -34,6 +37,9 @@
 }
 
 .table-footer-add {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     width: 1580px;
     height: 80px;
 }
@@ -88,4 +94,50 @@
     margin-left: 10px;
     background: url("../../../../assets/images/input-highlight.png") no-repeat;
     background-size: 32px 32px;
+}
+
+.rawMaterial-relation {
+    display: flex;
+    flex-direction: column;
+    width: 1060px;
+    height: 220px;
+}
+
+.filterCake-relation {
+    display: flex;
+    flex-direction: column;
+    width: 1060px;
+    height: 220px;
+}
+
+.price-sery {
+    width: 1060px;
+    height: 290px;
+}
+
+.rawMaterial-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 70px;
+}
+
+.unorder-list-outlined {
+    margin-left: 10px;
+    font-size: 26px;
+}
+
+.title-text {
+    margin: 0 15px 0 15px;
+    font-size: 16px;
+}
+
+.check-outlined {
+    margin-left: 7px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.check-button {
+    margin-right: 47px;
 }

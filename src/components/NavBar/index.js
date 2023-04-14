@@ -18,10 +18,10 @@ export default function NavBar(props) {
                     className={`item-body ${selectedItem === 1 ? "active-item-body" : ""}`}
                     onClick={() => {setSelectedItem(1);setSelectedPage(1);}}
                 >新增产品</div>
-                <div
+                {/* <div
                     className={`item-body ${selectedItem === 2 ? "active-item-body" : ""}`}
                     onClick={() => {setSelectedPage(2);setSelectedItem(2);}}
-                >产品详情</div>
+                >产品详情</div> */}
             </div>
             <div className="navbar-item">
                 <h4 className="item-head">滤饼管理</h4>

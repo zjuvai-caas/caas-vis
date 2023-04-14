@@ -24,8 +24,8 @@ function switchPage(index){
       return <PageProductList></PageProductList>;
     case 1: 
       return <PageProductAdd></PageProductAdd>;
-    case 2:
-      return <PageProductDetail></PageProductDetail> ;
+    // case 2:
+    //   return <PageProductDetail></PageProductDetail> ;
     case 3:
       return <PageFilterCakeList></PageFilterCakeList>;
     case 4:

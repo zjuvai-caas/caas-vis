@@ -6,9 +6,13 @@ import { UnorderedListOutlined } from '@ant-design/icons';
 import { PlusCircleFilled } from '@ant-design/icons';
 import { DeleteFilled } from '@ant-design/icons';
 import { DownloadOutlined } from '@ant-design/icons';
+import { LoadingOutlined } from '@ant-design/icons';
 import { Component } from 'react';
 import axios from 'axios';
-// import Qs from 'qs';
+import PageProductDetail from '../PageProductDetail';
+import PageProductAdd from '../PageProductAdd';
+import { BlueButton } from '../../../General/BlueButton';
+import { RedButton } from '../../../General/RedButton';
 
 export default class PageProductList extends Component {
     constructor(props) {
@@ -20,6 +24,11 @@ export default class PageProductList extends Component {
             searchResult: [],
             isAllSelected: false,
             isLoading: false,
+
+            isOnDetail: false,
+            isOnEdit: false,
+            detailId: 0,
+            editId: 0,
         }
         this.tempSelected = {};
     }
@@ -85,14 +94,15 @@ export default class PageProductList extends Component {
         this.setState({ isLoading: true });
 
         let tempParams = new URLSearchParams();
-        tempParams.append('productSeriesName',tempObj.productSeriesName);
-        tempParams.append('filterCakeName',tempObj.filterCakeName);
-        tempParams.append('rawMaterialName',tempObj.rawMaterialName);
+        tempParams.append('productSeriesName', tempObj.productSeriesName);
+        tempParams.append('filterCakeName', tempObj.filterCakeName);
+        tempParams.append('rawMaterialName', tempObj.rawMaterialName);
         console.log(tempParams.toString());
         console.log(tempObj);
         axios.get(
             // "http://localhost:3000/products",
             // "http://10.196.55.11:8080/productSeries/findAllProductSeries",
+            // "http://10.162.109.94:8080/product/findAllByCondition",
             "http://10.196.55.11:8080/product/findAllByCondition",
             {
                 // params: tempObj,
@@ -101,32 +111,56 @@ export default class PageProductList extends Component {
             }
         ).then((response) => {
             console.log(response);
-            let tempResult = response.data.slice(0, 20);
-            let tempList = [];
-            for (let i = 0; i < tempResult.length; i++) {
-                for (let j = 0; j < tempResult[i].productList.length; j++) {
-                    tempResult[i].productList[j].productSeriesFunction = tempResult[i].productSeriesFunction;
-                    tempResult[i].productList[j].productSeriesId = tempResult[i].productSeriesId;
-                    tempResult[i].productList[j].productSeriesName = tempResult[i].productSeriesName;
-                    tempList.push(tempResult[i].productList[j]);
-                }
-            }
-            console.log(tempList);
-            this.setState({
-                searchResult: tempList,
-                isAllSelected: false,
-                isLoading: false,
-            });
+            // let tempResult = response.data.slice(0, 20);
+            // let tempList = [];
+            // for (let i = 0; i < tempResult.length; i++) {
+            //     for (let j = 0; j < tempResult[i].productList.length; j++) {
+            //         tempResult[i].productList[j].productSeriesFunction = tempResult[i].productSeriesFunction;
+            //         tempResult[i].productList[j].productSeriesId = tempResult[i].productSeriesId;
+            //         tempResult[i].productList[j].productSeriesName = tempResult[i].productSeriesName;
+            //         tempList.push(tempResult[i].productList[j]);
+            //     }
+            // }
+            // console.log(tempList);
             // this.setState({
-            //     searchResult: response.data,
+            //     searchResult: tempList,
             //     isAllSelected: false,
             //     isLoading: false,
             // });
+            this.setState({
+                searchResult: response.data,
+                isAllSelected: false,
+                isLoading: false,
+            });
             // console.log(tempResult);
         })
     }
 
+    deleteItemInDB = () => {
+
+    }
+
+    editItemInDB = () => {
+        this.setState({ isOnEdit: true })
+    }
+
+    showDetail = () => {
+        this.setState({ isOnDetail: true })
+    }
+
+    backToProductList = () => {
+        this.setState({
+            isOnEdit: false,
+            isOnDetail: false,
+        })
+    }
+
     render() {
+        if (this.state.isOnDetail)
+            return <PageProductDetail data={this.state.searchResult[0]} backToProductList = {this.backToProductList}></PageProductDetail>;
+        if (this.state.isOnEdit)
+            return <PageProductAdd data={this.state.searchResult[0]} backToProductList = {this.backToProductList}></PageProductAdd>;
+
         let index = 1;
         return (
             <div className="page-body-list">
@@ -164,19 +198,17 @@ export default class PageProductList extends Component {
                         </div>
                     </div>
                     <div className="selection-bar">
-                        <div
-                            className="search-button"
-                            onClick={this.fetchSearchResult}
-                        >
-                            <SearchOutlined className="search-outlined" />
-                            <span className="search-button-text">搜 索</span>
+                        <div onClick={this.fetchSearchResult} style={{'margin-right':'20px'}}>
+                            <BlueButton 
+                                Component={SearchOutlined}
+                                text="搜 索"
+                            />
                         </div>
-                        <div
-                            className="reload-button"
-                            onClick={this.reload}
-                        >
-                            <ReloadOutlined className="reload-outlined" />
-                            <span className="search-button-text">重 置</span>
+                        <div onClick={this.reload}>
+                            <RedButton
+                                Component={ReloadOutlined}
+                                text="重 置"
+                            />
                         </div>
                     </div>
                 </div>
@@ -186,20 +218,23 @@ export default class PageProductList extends Component {
                             <UnorderedListOutlined className="unordered-list-outlined" />
                             <div className="data-list-text">数据列表</div>
                         </div>
-                        <div className="add-button">
-                            <PlusCircleFilled className="plus-circle-filled" />
-                            <span className="search-button-text">新 增</span>
+                        <div>
+                            <BlueButton
+                                Component={PlusCircleFilled}
+                                text="新 增"
+                            />
                         </div>
-                        <div
-                            className="delete-button"
-                            onClick={this.deleteListItem}
-                        >
-                            <DeleteFilled className="delete-filled" />
-                            <span className="search-button-text">删 除</span>
+                        <div style={{ 'margin-left': '27px' }} onClick={this.deleteListItem}>
+                            <RedButton
+                                Component={DeleteFilled}
+                                text="删 除"
+                            />
                         </div>
-                        <div className="download-button">
-                            <DownloadOutlined className="download-outlined" />
-                            <span className="search-button-text">下 载</span>
+                        <div style={{ 'margin-left': '1085px' }}>
+                            <BlueButton
+                                Component={DownloadOutlined}
+                                text="下 载"
+                            />
                         </div>
                     </div>
                     <div className="list-frame-head">
@@ -225,7 +260,7 @@ export default class PageProductList extends Component {
                         </table>
                     </div>
                     {this.state.isLoading ?
-                        <div className="loading">loading...</div>
+                        <div className="loading"><LoadingOutlined /></div>
                         :
                         <div className="list-frame-body">
                             <table>
@@ -246,16 +281,22 @@ export default class PageProductList extends Component {
                                                 <td width="10%">{product.productIndex}</td>
                                                 {/* <td width="10%">{product.productName}</td>
                                                 <td width="10%">******</td> */}
-                                                <td width="10%">{product.productSeriesName}</td>
+                                                <td width="10%">{product.productSeriesId}</td>
                                                 <td width="10%">{(product.productProcessingCost / product.productAccountingQuantity).toFixed(2)}</td>
                                                 {/* <td width="10%">{product.costPer}</td> */}
                                                 <td width="10%">2%</td>
-                                                <td width="20%">{product.productSeriesFunction}</td>
+                                                <td width="20%">{product.productFactoryName}</td>
                                                 {/* <td width="20%">{product.attachInfo}</td> */}
                                                 <td width="20%">
-                                                    <button>删除</button>
-                                                    <button>编辑</button>
-                                                    <button>查看详细信息</button>
+                                                    <button
+                                                        onClick={this.deleteItemInDB}
+                                                    >删除</button>
+                                                    <button
+                                                        onClick={this.editItemInDB}
+                                                    >编辑</button>
+                                                    <button
+                                                        onClick={this.showDetail}
+                                                    >查看详细信息</button>
                                                 </td>
                                             </tr>
                                         )

@@ -4,147 +4,81 @@ import ReactEcharts from "echarts-for-react"
 import AntSelect from '../../AntdComp/SelectAntd';
 import axios from 'axios';
 import { Component } from 'react';
+import OrdinaryTable from '../../../General/OrdinaryTable';
+import { BlueButton } from '../../../General/BlueButton';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 export default class PageProductDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
             selectedItem: 0,
-            prodValue: '',
-            prodIdValue: '',
-            prodSery: 'Any',
-            processCost: '￥0.00',
-            quantity: '0',
-            costPer: '￥0.00',
-            attachInfo: 'nothing'
+        }
+        this.data = props.data;
+    }
+    //setState在react中可能会表现为异步
+
+    setSelectionBody = () => {
+        switch (this.state.selectedItem) {
+            case 0:
+                return (
+                    <OrdinaryTable
+                        tableHead={["rawMaterialName", "rawMaterialId", "rawMaterialIndex", "rawMaterialPrice"]}
+                        data={this.data.rawMaterialList}
+                    />
+                )
+            case 1:
+                return (
+                    <OrdinaryTable
+                        tableHead={["filterCakeName", "filterCakeId", "filterCakeIndex", "filterCakeColor"]}
+                        data={this.data.filterCakeList}
+                    />
+                )
         }
     }
-    getOption = () => {
-        let option = {
-            series: {
-                type: 'sankey',
-                layout: 'none',
-                emphasis: {
-                    focus: 'adjacency'
-                },
-                data: [
-                    {
-                        name: 'a'
-                    },
-                    {
-                        name: 'b'
-                    },
-                    {
-                        name: 'a1'
-                    },
-                    {
-                        name: 'a2'
-                    },
-                    {
-                        name: 'b1'
-                    },
-                    {
-                        name: 'c'
-                    }
-                ],
-                links: [
-                    {
-                        source: 'a',
-                        target: 'a1',
-                        value: 5
-                    },
-                    {
-                        source: 'a',
-                        target: 'a2',
-                        value: 3
-                    },
-                    {
-                        source: 'b',
-                        target: 'b1',
-                        value: 8
-                    },
-                    {
-                        source: 'a',
-                        target: 'b1',
-                        value: 3
-                    },
-                    {
-                        source: 'b1',
-                        target: 'a1',
-                        value: 1
-                    },
-                    {
-                        source: 'b1',
-                        target: 'c',
-                        value: 2
-                    }
-                ]
-            }
-        };
-        return option;
-    };
 
-    //setState在react中可能会表现为异步
-    onChange = (value) => {this.setState({ prodValue: value });}
     render() {
         return (
             <div className="page-body" >
                 <div className="data-page">
                     <div className="table-bar">
                         <div className="table-head">产品详情页</div>
+                        <div onClick={() => this.props.backToProductList()} style={{'margin-left':'20px'}}>
+                            <BlueButton
+                                Component={ArrowLeftOutlined}
+                                text="返 回"
+                            />
+                        </div>
                     </div>
                     <div className="table-main">
                         <div className="prod-attribute">
                             <div className="attribute-item">
                                 <div className="text-prod-name">产品名称：</div>
-                                <div className='select-name'><AntSelect placeholder="select a Product" onChange={this.onChange}></AntSelect></div>
-                                <div
-                                    className="confirm"
-                                    onClick={
-                                        () => {
-                                            // console.log("send a request")
-                                            // console.log(this.state.prodValue);
-                                            axios.get("http://localhost:3000/products",
-                                                {
-                                                    params: {
-                                                        prodValue: this.state.prodValue,
-                                                    }
-                                                }).then((response) => this.setState({
-                                                    prodValue: response.data[0].productName,
-                                                    prodIdValue: response.data[0].prodIdValue,
-                                                    prodSery: response.data[0].productSeriesName,
-                                                    processCost: response.data[0].processCost,
-                                                    quantity: response.data[0].quantity,
-                                                    costPer: response.data[0].costPer,
-                                                    attachInfo: response.data[0].attachInfo,
-                                                })).catch(error => console.log(error));
-                                        }
-                                    }
-                                >确定</div>
+                                <p className="query-show">{this.data.productName}</p>
                             </div>
                             <div className="attribute-item">
                                 <div className="text-prod-name">产品编号：</div>
-                                <div className='select-name'><AntSelect placeholder="select a Product id"></AntSelect></div>
+                                <p className="query-show">{this.data.productIndex}</p>
                             </div>
                             <div className="attribute-item">
                                 <div className="text-prod-name">产品系列：</div>
-                                <p className="query-show">{this.state.prodSery}</p>
+                                <p className="query-show">{this.data.productSeriesId}</p>
                             </div>
                             <div className="attribute-item">
                                 <div className="text-prod-name">加工成本：</div>
-                                <p className="query-show">{this.state.processCost}</p>
+                                <p className="query-show">{this.data.productProcessingCost}</p>
                             </div>
                             <div className="attribute-item">
                                 <div className="text-prod-name">核算数量：</div>
-                                <p className="query-show">{this.state.quantity}</p>
+                                <p className="query-show">{this.data.productAccountingQuantity}</p>
                             </div>
                             <div className="attribute-item">
                                 <div className="text-prod-name">单位成本：</div>
-                                <p className="query-show">{this.state.costPer}</p>
+                                <p className="query-show">{(this.data.productProcessingCost/this.data.productAccountingQuantity).toFixed(2)}</p>
                             </div>
                             <div className="attribute-item">
                                 <div className="text-prod-name">附加信息：</div>
-                                <p className="query-show">{this.state.attachInfo}</p>
+                                <p className="query-show">{this.data.productSeriesFunction}</p>
                             </div>
                         </div>
                         <div className="relation">
@@ -162,12 +96,10 @@ export default class PageProductDetail extends Component {
                                     onClick={() => this.setState({ selectedItem: 2 })}
                                 >历史价格</div>
                             </div>
-                            <div className="echart-sank">
-                                <ReactEcharts
-                                    option={this.getOption()}
-                                    style={{ width: '100%', height: '100%' }}
-                                />
+                            <div className="selection-body">
+                                {this.setSelectionBody(this.state.selectedItem)}
                             </div>
+
                         </div>
                     </div>
                 </div>
