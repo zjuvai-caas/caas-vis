@@ -111,22 +111,6 @@ export default class PageProductList extends Component {
             }
         ).then((response) => {
             console.log(response);
-            // let tempResult = response.data.slice(0, 20);
-            // let tempList = [];
-            // for (let i = 0; i < tempResult.length; i++) {
-            //     for (let j = 0; j < tempResult[i].productList.length; j++) {
-            //         tempResult[i].productList[j].productSeriesFunction = tempResult[i].productSeriesFunction;
-            //         tempResult[i].productList[j].productSeriesId = tempResult[i].productSeriesId;
-            //         tempResult[i].productList[j].productSeriesName = tempResult[i].productSeriesName;
-            //         tempList.push(tempResult[i].productList[j]);
-            //     }
-            // }
-            // console.log(tempList);
-            // this.setState({
-            //     searchResult: tempList,
-            //     isAllSelected: false,
-            //     isLoading: false,
-            // });
             this.setState({
                 searchResult: response.data,
                 isAllSelected: false,
@@ -277,7 +261,7 @@ export default class PageProductList extends Component {
                                                         checked={this.tempSelected[product.id]}
                                                     /></td>
                                                 <td width="5%">{index++}</td>
-                                                <td width="10%">{product.productId}</td>
+                                                <td width="10%">{product.productName}</td>
                                                 <td width="10%">{product.productIndex}</td>
                                                 {/* <td width="10%">{product.productName}</td>
                                                 <td width="10%">******</td> */}

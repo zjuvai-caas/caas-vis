@@ -15,7 +15,7 @@ export default class EditableTable extends Component {
             <table className="editable-table">
                 <thead>
                     <tr>
-                        <td>{this.props.tableHeadZh}</td>
+                        <th>{this.props.tableHeadZh}</th>
                         {this.tempData.map(item =>
                             <th key={indexHead++}>{item[this.props.tableHead]}</th>
                         )}
@@ -30,7 +30,10 @@ export default class EditableTable extends Component {
                                     <input
                                         value={item[this.props.tableBody]}
                                         onChange={
-                                            (value) => this.tempData[indexBody - 1][this.props.tableBody] = value
+                                            (event) => {
+                                                this.tempData[indexBody - 1][this.props.tableBody] = event.target.value;
+                                                this.setState({data:this.tempData});
+                                            }
                                         }
                                     />
                                 </td>
@@ -44,8 +47,7 @@ export default class EditableTable extends Component {
                                 <td key={indexDelete++}>
                                     <button
                                         onClick={() => {
-                                            //这里暂时写成rawMaterialId
-                                            this.tempData = this.tempData.filter((item) => item.rawMaterialId != this.tempData[indexDelete-1].rawMaterialId);
+                                            this.tempData = this.tempData.filter((item) => item[this.props.identifier+"Id"] != this.tempData[indexDelete-1][this.props.identifier+"Id"]);
                                             this.setState({ data: this.tempData });
                                         }}
                                     >删 除</button>

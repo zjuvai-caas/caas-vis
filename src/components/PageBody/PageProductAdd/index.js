@@ -13,7 +13,9 @@ import { RedButton } from '../../../General/RedButton';
 export default class PageProductAdd extends Component {
     constructor(props) {
         super(props);
-        this.state = { data: props.data };
+        this.state = {
+            data: props.data,
+        };
         this.tempData = props.data;
     }
 
@@ -23,12 +25,17 @@ export default class PageProductAdd extends Component {
                 <div className="data-page-add">
                     <div className="table-bar-add">
                         <div className="table-head-add">编辑产品项</div>
-                        <div onClick={() => this.props.backToProductList()}>
-                            <BlueButton
-                                Component={ArrowLeftOutlined}
-                                text="返 回"
-                            />
-                        </div>
+                        {
+                            this.props.data ?
+                                <div onClick={() => this.props.backToProductList()}>
+                                    <BlueButton
+                                        Component={ArrowLeftOutlined}
+                                        text="返 回"
+                                    />
+                                </div>
+                                : ""
+                        }
+
                     </div>
                     <div className="table-main-add">
                         <div className="prod-attribute-add">
@@ -39,6 +46,7 @@ export default class PageProductAdd extends Component {
                                     className="select-name-add"
                                     placeholder="请输入产品完整名称"
                                     value={this.state.data ? this.state.data.productName : ''}
+                                    onChange={(event) => { this.tempData.productName = event.target.value; this.setState({ data: this.tempData }); }}
                                 ></input>
                                 <div className="input-highlight"></div>
                             </div>
@@ -49,6 +57,7 @@ export default class PageProductAdd extends Component {
                                     className="select-name-add"
                                     placeholder="请输入产品编号"
                                     value={this.state.data ? this.state.data.productIndex : ''}
+                                    onChange={(event) => { this.tempData.productIndex = event.target.value; this.setState({ data: this.tempData }); }}
                                 ></input>
                                 <div className="input-highlight"></div>
                             </div>
@@ -59,6 +68,7 @@ export default class PageProductAdd extends Component {
                                     className="select-name-add"
                                     placeholder="请输入产品系列"
                                     value={this.state.data ? this.state.data.productSeriesId : ''}
+                                    onChange={(event) => { this.tempData.productSeriesId = event.target.value; this.setState({ data: this.tempData }); }}
                                 ></input>
                             </div>
                             <div className="attribute-item-add">
@@ -68,6 +78,7 @@ export default class PageProductAdd extends Component {
                                     className="select-name-add"
                                     placeholder="请输入加工成本，默认为0"
                                     value={this.state.data ? this.state.data.productProcessingCost : ''}
+                                    onChange={(event) => { this.tempData.productProcessingCost = event.target.value; this.setState({ data: this.tempData }); }}
                                 ></input>
                             </div>
                             <div className="attribute-item-add">
@@ -77,6 +88,7 @@ export default class PageProductAdd extends Component {
                                     className="select-name-add"
                                     placeholder="一批产品数默认为1"
                                     value={this.state.data ? this.state.data.productAccountingQuantity : ''}
+                                    onChange={(event) => { this.tempData.productAccountingQuantity = event.target.value; this.setState({ data: this.tempData }); }}
                                 ></input>
                             </div>
                             <div className="attribute-item-add">
@@ -95,6 +107,7 @@ export default class PageProductAdd extends Component {
                                     />
                                 </div>
                                 <EditableTable
+                                    identifier="rawMaterial"
                                     tableHead="rawMaterialName"
                                     tableBody="rawMaterialPrice"
                                     tableHeadZh="原料名"
@@ -113,6 +126,7 @@ export default class PageProductAdd extends Component {
                                     />
                                 </div>
                                 <EditableTable
+                                    identifier="filterCake"
                                     tableHead="filterCakeName"
                                     tableBody="filterCakeAccountingQuantity"
                                     tableHeadZh="滤饼名"
@@ -120,18 +134,17 @@ export default class PageProductAdd extends Component {
                                     data={this.state.data ? this.state.data.filterCakeList : []}
                                 ></EditableTable>
                             </div>
-
                             <div className="price-sery"></div>
                         </div>
                     </div>
                     <div className="table-footer-add">
-                        <div style={{'margin-right': '47px'}}>
+                        <div style={{ 'margin-right': '47px' }}>
                             <BlueButton
                                 Component={CheckOutlined}
-                                text="新 增"
+                                text="确 定"
                             />
                         </div>
-                        <div style={{'margin-right':"37px"}}>
+                        <div style={{ 'margin-right': "37px" }}>
                             <RedButton
                                 Component={CloseOutlined}
                                 text="取 消"
